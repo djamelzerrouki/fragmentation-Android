@@ -8,15 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements fragment3.fragment3listner,fragment2.fragment2listner{
      private LinearLayout fragmentE1, fragmentE2, fragmentE3  ;
     private static FragmentManager mFragmentManager;
     FragmentTransaction transaction;
-
+    public static TextView Elemant3;
+    fragment1 f1;
+    fragment2 f2;
     fragment3 f3 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +28,18 @@ public class MainActivity extends AppCompatActivity {
          fragmentE1 = (LinearLayout) findViewById(R.id.fragment_E1);
          fragmentE2 = (LinearLayout) findViewById(R.id.fragment_E2);
          fragmentE3 = (LinearLayout) findViewById(R.id.fragment_E3);
-//fragmentE2.setVisibility(View.GONE);
+f1=new fragment1();
+f2=new fragment2();
+        f3=new fragment3();
+        Elemant3 = (TextView) findViewById(R.id.textViewF3);
+         //fragmentE2.setVisibility(View.GONE);
           //
         fragmentE1.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        fragment1  f1 = new  fragment1();
-   mFragmentManager = getSupportFragmentManager();
+    mFragmentManager = getSupportFragmentManager();
          transaction  = mFragmentManager.beginTransaction();
-        transaction.add(fragmentE1.getId(),new  fragment1() );
+        transaction.add(fragmentE1.getId(),f1);
 
         transaction.commit();
 
@@ -48,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
         mFragmentManager = getSupportFragmentManager();
         transaction  = mFragmentManager.beginTransaction();
-        fragment3 f3 = new  fragment3();
-        transaction.add(fragmentE3.getId(),f3 );
+         transaction.add(fragmentE3.getId(),f3 );
 
         transaction.commit();
 
@@ -66,14 +71,14 @@ public class MainActivity extends AppCompatActivity {
 
             mFragmentManager = getSupportFragmentManager();
         transaction  = mFragmentManager.beginTransaction();
-        transaction.add(fragmentE2.getId(),new  fragment2() );
+        transaction.add(fragmentE2.getId(),f2 );
          transaction.commit();
         fragmentE2.setVisibility(View.VISIBLE);
 
     }
     }
 
-    public void addfragment4(View view) {
+/*    public void addfragment4(View view) {
         int vesib=fragmentE3.getVisibility();
 
         if (vesib==0){
@@ -88,5 +93,30 @@ Toast.makeText(this,"1",Toast.LENGTH_LONG).show();
              transaction.add(fragmentE3.getId(),new  fragment1());
 transaction.commit();
         }
+    }*/
+
+    @Override
+    public void updatedata2(String s) {
+        f3.updateText(s);
     }
+    @Override
+    public void updatedata3(String s) {
+        f3.updateText(s);
+    }
+   /* public void updatfragment3(View view) {
+        switch (view.getId()){
+
+            case R.id.Elemant1:{ Toast.makeText(this,"Elemant1",Toast.LENGTH_LONG).show();
+          //f3.updateText("E11\nE12");
+          //  Elemant3.setText();
+            }
+            case R.id.Elemant2:{ Toast.makeText(this,"Elemant2",Toast.LENGTH_LONG).show();
+            //Elemant3.setText("E21\nE22\nE23");
+            }
+             case R.id.Elemant3:{ Toast.makeText(this,"Elemant3",Toast.LENGTH_LONG).show();
+           //  Elemant3.setText("E31\nE32");
+             }
+
+        }
+    }*/
 }
