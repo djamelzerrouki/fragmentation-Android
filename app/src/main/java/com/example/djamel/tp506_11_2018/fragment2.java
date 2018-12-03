@@ -14,7 +14,7 @@ public class fragment2 extends Fragment {
     fragment2listner listner;
   private   TextView textElment1,textElment2,textElment3;
     public interface fragment2listner{
-        void updatedata2(String s);
+        void updatedata2(int i);
     }
 
     @Nullable
@@ -27,20 +27,20 @@ public class fragment2 extends Fragment {
           textElment1.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View view) {
-                  listner.updatedata2("E11\nE12");
+                  listner.updatedata2(1);
                }
           });
         textElment2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listner.updatedata2("E21\nE22\nE23");
+                listner.updatedata2(2);
 
             }
         });
         textElment3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listner.updatedata2("E31\nE32");
+                listner.updatedata2(3);
 
             }
         });

@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements fragment3.fragment3listner,fragment2.fragment2listner{
      private LinearLayout fragmentE1, fragmentE2, fragmentE3  ;
+    TextView textView1 ,textView2, textView3;
+
     private static FragmentManager mFragmentManager;
     FragmentTransaction transaction;
     public static TextView Elemant3;
@@ -31,16 +33,23 @@ public class MainActivity extends AppCompatActivity implements fragment3.fragmen
 f1=new fragment1();
 f2=new fragment2();
         f3=new fragment3();
-        Elemant3 = (TextView) findViewById(R.id.textViewF3);
+
+        textView1=(TextView)   findViewById(R.id.textViewF3_1);
+        textView2=(TextView) findViewById(R.id.textViewF3_2);
+        textView3=(TextView) findViewById(R.id.textViewF3_3);
+        //Elemant3 = (TextView) findViewById(R.id.textViewF3);
          //fragmentE2.setVisibility(View.GONE);
           //
         fragmentE1.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-    mFragmentManager = getSupportFragmentManager();
-         transaction  = mFragmentManager.beginTransaction();
+        mFragmentManager = getSupportFragmentManager();
+        transaction  = mFragmentManager.beginTransaction();
         transaction.add(fragmentE1.getId(),f1);
-
+        transaction.add(fragmentE2.getId(),f2);
+        transaction.add(fragmentE3.getId(),f3);
+        transaction.hide(f2);
+        transaction.hide(f3);
         transaction.commit();
 
 
@@ -48,34 +57,28 @@ f2=new fragment2();
 
 
     public void addfragment(View view) {
-        int vesib=fragmentE3.getVisibility();
-    if ( vesib==4){
+
         fragmentE1.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        fragmentE2.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         mFragmentManager = getSupportFragmentManager();
         transaction  = mFragmentManager.beginTransaction();
-         transaction.add(fragmentE3.getId(),f3 );
-
+        transaction.show(f2);
         transaction.commit();
 
-        fragmentE3.setVisibility(View.VISIBLE);
-
-    }
 
     }
 
     public void addfragment3(View view) {
-        int vesib=fragmentE2.getVisibility();
-
-        if ( vesib==4){
-
-            mFragmentManager = getSupportFragmentManager();
+        fragmentE2.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        fragmentE3.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mFragmentManager = getSupportFragmentManager();
         transaction  = mFragmentManager.beginTransaction();
-        transaction.add(fragmentE2.getId(),f2 );
-         transaction.commit();
-        fragmentE2.setVisibility(View.VISIBLE);
-
-    }
+        transaction.show(f3);
+        transaction.commit();
     }
 
 /*    public void addfragment4(View view) {
@@ -96,11 +99,20 @@ transaction.commit();
     }*/
 
     @Override
-    public void updatedata2(String s) {
-        f3.updateText(s);
+    public void updatedata2(int s) {
+       int i= f3.updateText(s);
+
+        fragmentE2.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        fragmentE3.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mFragmentManager = getSupportFragmentManager();
+        transaction  = mFragmentManager.beginTransaction();
+        transaction.show(f3);
+        transaction.commit();
     }
     @Override
-    public void updatedata3(String s) {
+    public void updatedata3(int s) {
         f3.updateText(s);
     }
    /* public void updatfragment3(View view) {

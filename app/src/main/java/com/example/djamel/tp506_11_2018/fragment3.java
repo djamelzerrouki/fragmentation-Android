@@ -9,28 +9,62 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class fragment3 extends Fragment {
  fragment3listner listner;
      public interface fragment3listner{
-        void updatedata3(String s);
+        void updatedata3(int s);
     }
 
-    TextView textView;
+    TextView textView1 ,textView2, textView3;
     Button button;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment3_layout,container,false);
-          textView=(TextView) v.findViewById(R.id.textViewF3);
-        button=(Button) v.findViewById(R.id.buttonE3);
+          textView1=(TextView) v.findViewById(R.id.textViewF3_1);
+        textView2=(TextView) v.findViewById(R.id.textViewF3_2);
+        textView3=(TextView) v.findViewById(R.id.textViewF3_3);
 
         return v;
     }
 
-    public void updateText(String text){
-        textView.setText(text);
+    public int updateText(int i){
+        switch (i){
+            case 1:
+                  textView1.setText("E"+i+"e1");
+                  textView2.setVisibility(View.INVISIBLE);
+                  textView3.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                textView1.setText("E"+i+"e1");
+                textView2.setText("E"+i+"e2");
+                textView2.setVisibility(View.VISIBLE);
+                textView3.setVisibility(View.INVISIBLE);
+
+
+                break;
+            case 3:
+                textView1.setText("E"+i+"e1");
+                textView2.setText("E"+i+"e2");
+                textView3.setText("E"+i+"e3");
+                textView2.setVisibility(View.VISIBLE);
+                textView3.setVisibility(View.VISIBLE);
+
+                break;
+        }
+         return i;
+    }
+
+
+    public void showText(String text){
+
+        textView1.setText(text);
+        textView2.setText(text);
+        textView3.setText(text);
+
     }
 
     @Override
